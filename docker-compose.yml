@@ -4,24 +4,97 @@ services:
   signal-rag-bot:
     build:
       context: .
-      args:
-        REPO_URL: https://github.com/BramAlkema/signal-rag-bot.git
+      dockerfile: Dockerfile
     image: signal-rag-bot:latest
     container_name: signal-rag-bot
     restart: unless-stopped
+
+    # Environment variables
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - SIGNAL_PHONE_NUMBER=${SIGNAL_PHONE_NUMBER}
+      - ACTIVATION_PASSPHRASE=${ACTIVATION_PASSPHRASE:-Activate Oracle}
+      - AUTHORIZED_USERS=${AUTHORIZED_USERS:-}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - MAX_TOKENS=${MAX_TOKENS:-200}
+      - CHUNK_SIZE=${CHUNK_SIZE:-1000}
+      - CHUNK_OVERLAP=${CHUNK_OVERLAP:-200}
+      - SEARCH_K=${SEARCH_K:-3}
+
+    # Volumes for persistent data
     volumes:
-      # Persist Signal account data
-      - ./signal-data:/root/.local/share/signal-cli
-      # Optional: mount logs
+      # Signal account data (persistent)
+      - signal-data:/root/.local/share/signal-cli
+
+      # RAG index files (persistent)
+      - rag-index:/app/index
+
+      # Logs (optional, can be ephemeral)
       - ./logs:/app/logs
-    # For interactive linking (QR code display)
-    stdin_open: true
-    tty: true
+
+      # If you want to mount local index files for development:
+      # - ./rag_faiss.index:/app/rag_faiss.index:ro
+      # - ./rag_index.pkl:/app/rag_index.pkl:ro
+
+    # Health check configuration
+    healthcheck:
+      test: ["/usr/local/bin/healthcheck"]
+      interval: 30s
+      timeout: 10s
+      start_period: 60s
+      retries: 3
+
+    # Logging configuration
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
-        max-file: "3"
+        max-file: "5"
+        labels: "service=signal-rag-bot"
+
+    # Optional: For interactive QR code linking (first-time setup)
+    # stdin_open: true
+    # tty: true
+
+    # Optional: Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+
+    # Docker secrets support (alternative to env vars)
+    # Uncomment to use Docker secrets instead of environment variables:
+    # secrets:
+    #   - openai_api_key
+    #   - signal_phone_number
+    #   - activation_passphrase
+
+# Named volumes for persistent data
+volumes:
+  signal-data:
+    driver: local
+  rag-index:
+    driver: local
+
+# Docker secrets definitions
+# Uncomment and configure to use Docker secrets:
+# secrets:
+#   openai_api_key:
+#     file: ./secrets/openai_api_key.txt
+#   signal_phone_number:
+#     file: ./secrets/signal_phone_number.txt
+#   activation_passphrase:
+#     file: ./secrets/activation_passphrase.txt
+
+# Optional: Networks
+# networks:
+#   signal-rag:
+#     driver: bridge

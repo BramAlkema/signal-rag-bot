@@ -1,11 +1,92 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Python cache
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
 venv/
-__pycache__/
-*.pyc
-.env
-.git/
+env/
+ENV/
+.venv
+pip-log.txt
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+.pytest_cache/
+.coverage
+coverage.json
+coverage_html/
+htmlcov/
+.tox/
+tests/
+
+# Documentation
+*.md
+!README.md
+!docker/README_SECRETS.md
+docs/
+
+# Logs
+*.log
+logs/
+*.out
+
+# Data files (will be mounted as volumes)
+signal-data/
+*.index
+*.pkl
+output_*/
+output_v3/
+archive/
+extraction/
 input/
 intermediate/
 optimized/
 *.pdf
-node_modules/
+
+# Docker files (don't need in image)
+docker-compose.yml
+.dockerignore
+DOCKER_DEPLOYMENT.md
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+secrets/
+
+# OS files
 .DS_Store
+Thumbs.db
+node_modules/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Agent OS files (not needed in container)
+.agent-os/
+
+# Coverage files
+.coverage*
+coverage.json
+
+# Keep only essential files for runtime

@@ -44,15 +44,15 @@ Based on SPECIFICATIONS.md and SECURITY.md, these tasks will make the Signal RAG
   - [x] 4.7 Add code coverage reporting and CI/CD integration
   - [x] 4.8 Verify all tests pass with >80% overall coverage
 
-- [ ] 5. Build Production-Ready Docker Deployment
-  - [ ] 5.1 Write tests for Docker build and container startup
-  - [ ] 5.2 Create multi-stage Dockerfile (build + runtime, <500MB final image)
-  - [ ] 5.3 Update docker-compose.yml with health checks and proper volume management
-  - [ ] 5.4 Add environment variable validation in entrypoint script
-  - [ ] 5.5 Create Docker secrets support for sensitive credentials
-  - [ ] 5.6 Add container health check script
-  - [ ] 5.7 Test Docker deployment end-to-end (build, run, health check)
-  - [ ] 5.8 Verify Docker deployment meets all requirements
+- [x] 5. Build Production-Ready Docker Deployment
+  - [x] 5.1 Write tests for Docker build and container startup
+  - [x] 5.2 Create multi-stage Dockerfile (build + runtime, <500MB final image)
+  - [x] 5.3 Update docker-compose.yml with health checks and proper volume management
+  - [x] 5.4 Add environment variable validation in entrypoint script
+  - [x] 5.5 Create Docker secrets support for sensitive credentials
+  - [x] 5.6 Add container health check script
+  - [x] 5.7 Test Docker deployment end-to-end (build, run, health check)
+  - [x] 5.8 Verify Docker deployment meets all requirements
 
 - [ ] 6. Create Installation & Deployment Documentation
   - [ ] 6.1 Write INSTALLATION.md (local setup for macOS/Linux)
