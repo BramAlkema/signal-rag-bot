@@ -2,6 +2,8 @@
 
 A Signal messenger chatbot powered by OpenAI Assistant API with RAG (Retrieval-Augmented Generation) knowledge base.
 
+📚 **[View Project Website](https://bramalkem.github.io/signal-rag-bot/)** | 📖 [Documentation](#documentation) | 🚀 [Quick Deploy](#deployment-options)
+
 > **Note**: This is an MVP demonstrating the RAG pipeline. The semantic bucketing is automated and you can customize categories based on your PDFs.
 
 ## Features
@@ -84,9 +86,42 @@ Send messages to "Note to Self" in Signal or have contacts message you.
 - `/info` - Knowledge base stats
 - `/reset` - Clear conversation history
 
-## Deployment
+## Deployment Options
 
-See [DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md) for containerized deployment.
+Choose the best deployment for your needs:
+
+| Platform | Cost | Setup Time | Best For |
+|----------|------|------------|----------|
+| **[Replit Free](README_REPLIT.md)** | $0/mo | 5 min | Testing, personal use |
+| **[VPS Lite](README_SMALL_BOXES.md)** | $3-6/mo | 15 min | Small teams, budget production |
+| **[VPS Standard](DOCKER_DEPLOYMENT.md)** | $12-18/mo | 20 min | Production, high traffic |
+
+📊 **[Compare All Options](DEPLOYMENT_OPTIONS.md)** | 🔄 **[Migration Guide](DEPLOYMENT_COMPARISON.md)**
+
+### Quick Deploy
+
+**Replit (Free)**
+```bash
+# 1. Import to Replit
+# 2. Add secrets, run: bash setup_replit.sh
+# 3. Click Run
+```
+
+**VPS Lite ($3-6/mo)**
+```bash
+git clone https://github.com/BramAlkema/signal-rag-bot
+cd signal-rag-bot
+cp .env.lite .env && nano .env
+docker-compose -f docker-compose.lite.yml up -d
+```
+
+**VPS Standard ($12-18/mo)**
+```bash
+git clone https://github.com/BramAlkema/signal-rag-bot
+cd signal-rag-bot
+cp .env.example .env && nano .env
+docker-compose up -d
+```
 
 ## Project Structure
 
@@ -111,6 +146,17 @@ See [DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md) for containerized deployment.
 5. **Upload**: Creates OpenAI Assistant with file search
 6. **Bot**: Signal interface for Q&A
 
+## Documentation
+
+- 📖 [Main README](README.md) - Project overview and quick start
+- 🐳 [Docker Deployment](DOCKER_DEPLOYMENT.md) - Standard VPS deployment
+- 📦 [Small Box Deployment](README_SMALL_BOXES.md) - Budget VPS (1GB RAM)
+- ☁️ [Replit Deployment](README_REPLIT.md) - Free cloud hosting
+- 📊 [Deployment Options](DEPLOYMENT_OPTIONS.md) - Complete comparison
+- 🔄 [Deployment Comparison](DEPLOYMENT_COMPARISON.md) - Migration guide
+- 🔒 [Security](security.py) - Production security controls
+- 🧪 [Testing](tests/) - 102 tests with >80% coverage
+
 ## License
 
-MIT
+MIT - see [LICENSE](LICENSE) file for details
