@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Production-ready Signal chatbot with RAG using FAISS vector store. Deploy for free on Replit or $3/month on VPS.">
+    <meta name="keywords" content="Signal bot, RAG, chatbot, FAISS, OpenAI, Docker, Replit">
+    <title>Signal RAG Bot - Intelligent Chatbot for Signal Messenger</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo">🤖</span>
+                <span class="brand-name">Signal RAG Bot</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#deployment">Deployment</a>
+                <a href="#docs">Docs</a>
+                <a href="https://github.com/BramAlkema/signal-rag-bot" target="_blank" class="btn-outline">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Intelligent Chatbot for<br>
+                    <span class="gradient-text">Signal Messenger</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Production-ready chatbot with RAG (Retrieval-Augmented Generation) using FAISS vector store.
+                    Deploy for free or $3/month. 102 tests passing, >80% coverage.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#quick-start" class="btn-primary">Get Started</a>
+                    <a href="#deployment" class="btn-secondary">View Deployment Options</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">$0-18</div>
+                        <div class="stat-label">per month</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">5 min</div>
+                        <div class="stat-label">setup time</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">102</div>
+                        <div class="stat-label">tests passing</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">deployment options</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Enterprise-Grade Features</h2>
+            <p class="section-subtitle">Built for security, reliability, and performance</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure by Design</h3>
+                    <p>Passphrase activation, rate limiting, input validation, and threat detection built-in.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Intelligent RAG</h3>
+                    <p>FAISS vector search with OpenAI embeddings for accurate, context-aware responses.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Signal Integration</h3>
+                    <p>Linked device mode - no separate phone number needed. Works with your existing Signal account.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🐳</div>
+                    <h3>Production Ready</h3>
+                    <p>Docker deployment with health checks, monitoring, and comprehensive test coverage (>80%).</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Observable</h3>
+                    <p>Structured logging, Prometheus metrics, audit trails, and anomaly detection.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Optimized</h3>
+                    <p>Multiple configurations: from 280MB RAM (lite) to 2GB (standard). Auto-optimizes for platform.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployment Options -->
+    <section id="deployment" class="deployment">
+        <div class="container">
+            <h2 class="section-title">Flexible Deployment Options</h2>
+            <p class="section-subtitle">Choose the right platform for your needs</p>
+            
+            <div class="deployment-grid">
+                <div class="deployment-card">
+                    <div class="deployment-badge free">FREE</div>
+                    <h3>Replit Free Tier</h3>
+                    <div class="deployment-price">$0<span>/month</span></div>
+                    <ul class="deployment-features">
+                        <li>✅ 5-minute setup</li>
+                        <li>✅ No server management</li>
+                        <li>✅ Built-in code editor</li>
+                        <li>✅ Auto-optimization</li>
+                        <li>⚠️ Sleeps when inactive*</li>
+                    </ul>
+                    <p class="deployment-note">*Use UptimeRobot to keep awake (free)</p>
+                    <a href="https://replit.com" class="btn-deployment">Deploy to Replit</a>
+                    <div class="deployment-stats">
+                        <span>5-10 users</span>
+                        <span>•</span>
+                        <span>5-10s response</span>
+                    </div>
+                </div>
+                
+                <div class="deployment-card featured">
+                    <div class="deployment-badge popular">POPULAR</div>
+                    <h3>VPS Lite</h3>
+                    <div class="deployment-price">$3-6<span>/month</span></div>
+                    <ul class="deployment-features">
+                        <li>✅ Dedicated resources</li>
+                        <li>✅ Always-on (24/7)</li>
+                        <li>✅ Docker deployment</li>
+                        <li>✅ Full control</li>
+                        <li>✅ Fast responses</li>
+                    </ul>
+                    <p class="deployment-note">Hetzner CX11: €3.79/mo</p>
+                    <a href="#quick-start" class="btn-deployment">Get Started</a>
+                    <div class="deployment-stats">
+                        <span>20 users</span>
+                        <span>•</span>
+                        <span>4-6s response</span>
+                    </div>
+                </div>
+                
+                <div class="deployment-card">
+                    <div class="deployment-badge pro">PRO</div>
+                    <h3>VPS Standard</h3>
+                    <div class="deployment-price">$12-18<span>/month</span></div>
+                    <ul class="deployment-features">
+                        <li>✅ Best performance</li>
+                        <li>✅ High concurrency</li>
+                        <li>✅ Production-ready</li>
+                        <li>✅ Full monitoring</li>
+                        <li>✅ Scalable</li>
+                    </ul>
+                    <p class="deployment-note">Hetzner CX21: €6.90/mo</p>
+                    <a href="#quick-start" class="btn-deployment">Get Started</a>
+                    <div class="deployment-stats">
+                        <span>100 users</span>
+                        <span>•</span>
+                        <span>2-4s response</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section id="quick-start" class="quick-start">
+        <div class="container">
+            <h2 class="section-title">Quick Start</h2>
+            <p class="section-subtitle">Get your bot running in minutes</p>
+            
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab('replit')">Replit (Free)</button>
+                <button class="tab-button" onclick="showTab('vps-lite')">VPS Lite</button>
+                <button class="tab-button" onclick="showTab('vps-standard')">VPS Standard</button>
+            </div>
+            
+            <div id="replit" class="tab-content active">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Import to Replit</h4>
+                            <p>Go to <a href="https://replit.com">replit.com</a> → Import from GitHub</p>
+                            <pre><code>https://github.com/BramAlkema/signal-rag-bot</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Add Secrets</h4>
+                            <p>In Secrets tab (🔒), add:</p>
+                            <pre><code>OPENAI_API_KEY=sk-your-key
+SIGNAL_PHONE_NUMBER=+31612345678</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Run Setup</h4>
+                            <pre><code>bash setup_replit.sh</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Link Signal & Start</h4>
+                            <pre><code>signal-cli link -n "RAG-Bot"
+# Scan QR code, then click "Run"</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="vps-lite" class="tab-content">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Clone Repository</h4>
+                            <pre><code>git clone https://github.com/BramAlkema/signal-rag-bot
+cd signal-rag-bot</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Configure</h4>
+                            <pre><code>cp .env.lite .env
+nano .env  # Add your credentials</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Deploy</h4>
+                            <pre><code>docker-compose -f docker-compose.lite.yml up -d</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="vps-standard" class="tab-content">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Clone Repository</h4>
+                            <pre><code>git clone https://github.com/BramAlkema/signal-rag-bot
+cd signal-rag-bot</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Configure</h4>
+                            <pre><code>cp .env.example .env
+nano .env  # Add your credentials</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Deploy</h4>
+                            <pre><code>docker-compose up -d</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation -->
+    <section id="docs" class="documentation">
+        <div class="container">
+            <h2 class="section-title">Documentation</h2>
+            <p class="section-subtitle">Comprehensive guides for every deployment</p>
+            
+            <div class="docs-grid">
+                <a href="https://github.com/BramAlkema/signal-rag-bot#readme" class="doc-card">
+                    <div class="doc-icon">📖</div>
+                    <h3>README</h3>
+                    <p>Complete project overview and standard deployment guide</p>
+                </a>
+                
+                <a href="https://github.com/BramAlkema/signal-rag-bot/blob/main/README_REPLIT.md" class="doc-card">
+                    <div class="doc-icon">🔷</div>
+                    <h3>Replit Guide</h3>
+                    <p>Deploy to Replit in 5 minutes with zero server management</p>
+                </a>
+                
+                <a href="https://github.com/BramAlkema/signal-rag-bot/blob/main/README_SMALL_BOXES.md" class="doc-card">
+                    <div class="doc-icon">📦</div>
+                    <h3>Small Box Guide</h3>
+                    <p>Optimize for 1GB RAM VPS - €3.79/month deployment</p>
+                </a>
+                
+                <a href="https://github.com/BramAlkema/signal-rag-bot/blob/main/DEPLOYMENT_OPTIONS.md" class="doc-card">
+                    <div class="doc-icon">🚀</div>
+                    <h3>Deployment Options</h3>
+                    <p>Compare all platforms and choose the right one</p>
+                </a>
+                
+                <a href="https://github.com/BramAlkema/signal-rag-bot/blob/main/SECURITY.md" class="doc-card">
+                    <div class="doc-icon">🔐</div>
+                    <h3>Security Guide</h3>
+                    <p>Security architecture, threat model, and best practices</p>
+                </a>
+                
+                <a href="https://github.com/BramAlkema/signal-rag-bot/blob/main/SPECIFICATIONS.md" class="doc-card">
+                    <div class="doc-icon">📋</div>
+                    <h3>Specifications</h3>
+                    <p>Technical specifications and architecture details</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title">Built With Modern Tech</h2>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-name">Python 3.11</div>
+                    <div class="tech-desc">Core language</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-name">OpenAI</div>
+                    <div class="tech-desc">Embeddings & Chat</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-name">FAISS</div>
+                    <div class="tech-desc">Vector search</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-name">Signal</div>
+                    <div class="tech-desc">Messenger platform</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-name">Docker</div>
+                    <div class="tech-desc">Containerization</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-name">Pytest</div>
+                    <div class="tech-desc">Testing (102 tests)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Deploy?</h2>
+            <p>Get your intelligent Signal chatbot running in minutes</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/BramAlkema/signal-rag-bot" class="btn-primary">View on GitHub</a>
+                <a href="#quick-start" class="btn-secondary">Quick Start Guide</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Signal RAG Bot</h4>
+                    <p>Production-ready chatbot with RAG for Signal Messenger</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="https://github.com/BramAlkema/signal-rag-bot">GitHub</a>
+                    <a href="https://github.com/BramAlkema/signal-rag-bot#readme">Documentation</a>
+                    <a href="https://github.com/BramAlkema/signal-rag-bot/issues">Issues</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Deployment</h4>
+                    <a href="https://replit.com">Replit</a>
+                    <a href="https://www.hetzner.com/cloud">Hetzner</a>
+                    <a href="https://www.digitalocean.com">DigitalOcean</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>License</h4>
+                    <a href="https://github.com/BramAlkema/signal-rag-bot/blob/main/LICENSE">MIT License</a>
+                    <a href="https://github.com/BramAlkema/signal-rag-bot/graphs/contributors">Contributors</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Signal RAG Bot. Released under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
