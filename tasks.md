@@ -24,15 +24,15 @@ Based on SPECIFICATIONS.md and SECURITY.md, these tasks will make the Signal RAG
   - [x] 2.7 Add comprehensive error logging with sanitized messages
   - [x] 2.8 Verify all error handling tests pass
 
-- [ ] 3. Add Monitoring, Logging & Audit Trail
-  - [ ] 3.1 Write tests for audit logging and metrics collection
-  - [ ] 3.2 Implement structured JSON logging with log rotation
-  - [ ] 3.3 Add audit logger (hash user IDs, redact sensitive data)
-  - [ ] 3.4 Implement anomaly detector (message length, off-hours usage)
-  - [ ] 3.5 Add metrics collection (messages, response time, errors)
-  - [ ] 3.6 Create health check endpoint/function
-  - [ ] 3.7 Add alerting for critical errors (API key invalid, quota exceeded)
-  - [ ] 3.8 Verify all monitoring tests pass
+- [x] 3. Add Monitoring, Logging & Audit Trail
+  - [x] 3.1 Write tests for audit logging and metrics collection
+  - [x] 3.2 Implement structured JSON logging with log rotation
+  - [x] 3.3 Add audit logger (hash user IDs, redact sensitive data)
+  - [x] 3.4 Implement anomaly detector (message length, off-hours usage)
+  - [x] 3.5 Add metrics collection (messages, response time, errors)
+  - [x] 3.6 Create health check endpoint/function
+  - [x] 3.7 Add alerting for critical errors (API key invalid, quota exceeded)
+  - [x] 3.8 Verify all monitoring tests pass
 
 - [ ] 4. Create Comprehensive Test Suite
   - [ ] 4.1 Set up pytest configuration and fixtures
