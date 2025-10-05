@@ -2,11 +2,16 @@ version: '3.8'
 
 services:
   signal-rag-bot:
-    build: .
+    build:
+      context: .
+      args:
+        REPO_URL: https://github.com/BramAlkema/signal-rag-bot.git
+    image: signal-rag-bot:latest
     container_name: signal-rag-bot
     restart: unless-stopped
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - SIGNAL_PHONE_NUMBER=${SIGNAL_PHONE_NUMBER}
     volumes:
       # Persist Signal account data
       - ./signal-data:/root/.local/share/signal-cli

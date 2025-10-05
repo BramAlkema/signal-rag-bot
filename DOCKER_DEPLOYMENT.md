@@ -2,31 +2,22 @@
 
 ## Quick Start (5 minutes)
 
-### 1. Copy Files to Your Server
-
-```bash
-# From your local machine
-cd /Users/ynse/projects/RAG
-
-# Upload to server
-scp -r Dockerfile docker-compose.yml requirements.txt signal_bot_linked.py .env.example user@your-server:/home/user/signal-bot/
-```
-
-### 2. On Your Server
+### 1. Clone Repository on Your Server
 
 ```bash
 # SSH into server
 ssh user@your-server
 
-# Navigate to directory
-cd ~/signal-bot
+# Clone the repository
+git clone https://github.com/BramAlkema/signal-rag-bot.git
+cd signal-rag-bot
 
 # Create .env file
 cp .env.example .env
-nano .env  # Add your OPENAI_API_KEY
+nano .env  # Add your OPENAI_API_KEY and SIGNAL_PHONE_NUMBER
 ```
 
-### 3. Build and Run
+### 2. Build and Run
 
 ```bash
 # Build the Docker image
@@ -72,12 +63,12 @@ docker-compose restart
 
 ### Update Bot Code
 ```bash
-# Upload new signal_bot_linked.py
-scp signal_bot_linked.py user@your-server:/home/user/signal-bot/
+# Pull latest code from GitHub
+git pull origin main
 
 # Rebuild and restart
 docker-compose down
-docker-compose build
+docker-compose build --no-cache
 docker-compose up -d
 ```
 
@@ -274,21 +265,22 @@ secrets:
 
 ## One-Line Deploy
 
-If you want to automate everything:
+Automate deployment with a script:
 
 ```bash
 # On your server, create deploy.sh:
 #!/bin/bash
-cd ~/signal-bot
-git pull  # if using git
+cd ~/signal-rag-bot
+git pull origin main
 docker-compose down
-docker-compose build
+docker-compose build --no-cache
 docker-compose up -d
 docker-compose logs -f --tail=50
 ```
 
-Then just run:
+Make it executable:
 ```bash
+chmod +x deploy.sh
 ./deploy.sh
 ```
 

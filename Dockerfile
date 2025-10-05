@@ -1,11 +1,12 @@
 # Dockerfile for Signal RAG Bot
 FROM python:3.11-slim
 
-# Install Java (required for signal-cli)
+# Install Java (required for signal-cli) and git
 RUN apt-get update && apt-get install -y \
     openjdk-17-jre-headless \
     wget \
     curl \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
 # Install signal-cli
@@ -17,12 +18,12 @@ RUN wget https://github.com/AsamK/signal-cli/releases/download/v0.13.9/signal-cl
 # Set working directory
 WORKDIR /app
 
-# Copy requirements and install
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Clone repository
+ARG REPO_URL=https://github.com/BramAlkema/signal-rag-bot.git
+RUN git clone ${REPO_URL} . && rm -rf .git
 
-# Copy application files
-COPY signal_bot_linked.py .
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Signal-cli data will be mounted as volume
 VOLUME /root/.local/share/signal-cli
