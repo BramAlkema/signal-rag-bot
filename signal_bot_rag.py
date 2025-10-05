@@ -57,7 +57,25 @@ openai_circuit_breaker = CircuitBreaker(failure_threshold=5, timeout=60)
 
 # Track conversations and activated users
 user_conversations = {}
-activated_users = set()  # Users who have said the passphrase
+ACTIVATED_USERS_FILE = "activated_users.json"
+
+# Load activated users from file
+activated_users = set()
+if Path(ACTIVATED_USERS_FILE).exists():
+    try:
+        with open(ACTIVATED_USERS_FILE, "r") as f:
+            activated_users = set(json.load(f))
+        print(f"📋 Loaded {len(activated_users)} activated users from file\n")
+    except Exception as e:
+        print(f"⚠️  Could not load activated users: {e}\n")
+
+def save_activated_users():
+    """Save activated users to JSON file"""
+    try:
+        with open(ACTIVATED_USERS_FILE, "w") as f:
+            json.dump(list(activated_users), f, indent=2)
+    except Exception as e:
+        print(f"✗ Failed to save activated users: {e}")
 
 def send_signal_message(recipient, message, preview_url=None):
     """Send message via signal-cli with optional link preview"""
@@ -257,6 +275,7 @@ def process_messages():
                 # Check for activation passphrase
                 if text.strip() == ACTIVATION_PASSPHRASE:
                     activated_users.add(sender)
+                    save_activated_users()
                     welcome_msg = """✅ Oracle activated!
 
 Ask me about:
@@ -267,15 +286,17 @@ Ask me about:
 
 Commands: /help /info /reset /deactivate"""
                     send_signal_message(sender, welcome_msg)
+                    print(f"  ✅ User activated and saved: {sender}")
                     continue
 
                 # Check for deactivation command
                 if text.strip().lower() in ["deactivate oracle", "/deactivate"]:
                     if sender in activated_users:
                         activated_users.remove(sender)
+                        save_activated_users()
                         goodbye_msg = "👋 Oracle deactivated! Send 'Activate Oracle' to reactivate."
                         send_signal_message(sender, goodbye_msg)
-                        print(f"  ℹ️  User deactivated: {sender}")
+                        print(f"  ℹ️  User deactivated and saved: {sender}")
                     continue
 
                 # Ignore messages from non-activated users (silent)

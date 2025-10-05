@@ -32,6 +32,7 @@ bot.log
 # Signal data
 signal-data/
 /tmp/
+activated_users.json
 
 # Misc
 *.swp
