@@ -265,8 +265,17 @@ Ask me about:
 • Drones & unmanned systems
 • Policy & strategy documents
 
-Commands: /help /info /reset"""
+Commands: /help /info /reset /deactivate"""
                     send_signal_message(sender, welcome_msg)
+                    continue
+
+                # Check for deactivation command
+                if text.strip().lower() in ["deactivate oracle", "/deactivate"]:
+                    if sender in activated_users:
+                        activated_users.remove(sender)
+                        goodbye_msg = "👋 Oracle deactivated! Send 'Activate Oracle' to reactivate."
+                        send_signal_message(sender, goodbye_msg)
+                        print(f"  ℹ️  User deactivated: {sender}")
                     continue
 
                 # Ignore messages from non-activated users (silent)
@@ -294,6 +303,7 @@ Commands:
 /help - Show this message
 /reset - Clear history
 /info - Knowledge base stats
+/deactivate - Turn off Oracle (stop responding)
 
 Ask me about:
 • Dutch defense industry & ecosystems
