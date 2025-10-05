@@ -2,6 +2,8 @@
 
 A Signal messenger chatbot powered by OpenAI Assistant API with RAG (Retrieval-Augmented Generation) knowledge base.
 
+> **Note**: This is an MVP demonstrating the RAG pipeline. The semantic bucketing is automated and you can customize categories based on your PDFs.
+
 ## Features
 
 - 📱 Signal messenger integration via linked device
@@ -100,11 +102,14 @@ See [DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md) for containerized deployment.
 └── docker-compose.yml         # Orchestration
 ```
 
-## Knowledge Base Stats
+## How It Works
 
-- **Frontend & UI**: 430K tokens (17 docs)
-- **Security & Auth**: 238K tokens (2 docs)
-- **Total**: 668K tokens
+1. **PDF Processing**: Drop PDFs in `input/pdfs/`
+2. **Extraction**: Preserves structure (TOC, links, tables)
+3. **Metadata**: Extracts titles, authors from PDFs
+4. **Bucketing**: Auto-categorizes into semantic buckets (max 2M tokens each)
+5. **Upload**: Creates OpenAI Assistant with file search
+6. **Bot**: Signal interface for Q&A
 
 ## License
 

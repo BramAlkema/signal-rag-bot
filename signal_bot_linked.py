@@ -20,7 +20,7 @@ from openai import OpenAI
 
 # Configuration
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-ASSISTANT_ID = "asst_5eRxLWftGiZttJNSEWMO7MuU"
+ASSISTANT_ID = os.environ.get("ASSISTANT_ID", "asst_5eRxLWftGiZttJNSEWMO7MuU")
 
 # Authorized users (phone numbers that can use the bot)
 # Leave empty [] to allow anyone, or add specific numbers like ["+1234567890"]

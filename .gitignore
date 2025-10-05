@@ -37,3 +37,10 @@ signal-data/
 *.swp
 *.swo
 *~
+
+# Knowledge base content (private data)
+KNOWLEDGE_BASE_MANIFEST.md
+pdf_metadata.json
+input/
+output/
+output_v2/
