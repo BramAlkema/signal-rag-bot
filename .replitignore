@@ -1,0 +1,80 @@
+# Replit ignore file - files not needed in Replit workspace
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Testing
+.pytest_cache/
+.coverage
+coverage.json
+coverage_html/
+htmlcov/
+.tox/
+tests/
+
+# Documentation build
+docs/site/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Docker files (not needed on Replit)
+Dockerfile
+Dockerfile.lite
+docker-compose.yml
+docker-compose.lite.yml
+.dockerignore
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Large data files (will be uploaded separately if needed)
+*.pdf
+output_*/
+archive/
+extraction/
+
+# Logs (created at runtime)
+*.log
+logs/*.log
+
+# Agent OS (development files)
+.agent-os/
+.claude/
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Coverage
+.coverage*
+
+# Large test data
+rag_faiss.index
+rag_index.pkl

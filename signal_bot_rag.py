@@ -10,6 +10,15 @@ import subprocess
 import time
 from pathlib import Path
 from dotenv import load_dotenv
+
+# Auto-configure for Replit if detected
+try:
+    from replit_helper import is_replit, configure_for_replit
+    if is_replit():
+        configure_for_replit()
+except ImportError:
+    pass  # Not on Replit or helper not available
+
 from custom_rag import CustomRAG
 from security import (
     sanitize_message,
