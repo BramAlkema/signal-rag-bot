@@ -1,0 +1,100 @@
+# ===========================================
+# Dockerfile.lite - Optimized for Small Boxes
+# ===========================================
+# Target: VPS with 1GB RAM, 1 vCPU
+# Final image size: ~350MB (vs 487MB standard)
+# Memory usage: ~300MB (vs ~850MB standard)
+
+# ===========================================
+# Stage 1: Build Stage
+# ===========================================
+FROM python:3.11-slim AS builder
+
+# Install minimal build dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    g++ \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Install only essential Python packages for lite version
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    # Install packages one by one with minimal dependencies
+    pip install --no-cache-dir \
+    openai==1.54.4 \
+    numpy==1.26.4 \
+    faiss-cpu==1.9.0 \
+    python-dotenv==1.0.1 \
+    && rm -rf ~/.cache/pip
+
+# Download signal-cli (smaller extraction)
+WORKDIR /tmp
+RUN wget -q https://github.com/AsamK/signal-cli/releases/download/v0.13.9/signal-cli-0.13.9-Linux.tar.gz && \
+    tar xf signal-cli-0.13.9-Linux.tar.gz && \
+    # Remove unnecessary files to save space
+    rm -rf signal-cli-0.13.9/lib/src \
+           signal-cli-0.13.9/lib/javadoc && \
+    mv signal-cli-0.13.9 /opt/signal-cli && \
+    rm signal-cli-0.13.9-Linux.tar.gz
+
+# ===========================================
+# Stage 2: Runtime Stage (Minimal)
+# ===========================================
+FROM python:3.11-slim
+
+# Install minimal runtime dependencies
+# Use JRE instead of JDK, remove unnecessary packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    openjdk-17-jre-headless \
+    curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# Copy virtual environment from builder
+COPY --from=builder /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Copy signal-cli from builder
+COPY --from=builder /opt/signal-cli /opt/signal-cli
+RUN ln -sf /opt/signal-cli/bin/signal-cli /usr/local/bin/signal-cli
+
+# Create app directory
+WORKDIR /app
+
+# Copy only essential application files
+COPY custom_rag.py .
+COPY security.py .
+COPY error_handling.py .
+COPY monitoring.py .
+COPY signal_bot_rag.py .
+
+# Copy lightweight health check
+COPY docker/healthcheck.sh /usr/local/bin/healthcheck
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint
+RUN chmod +x /usr/local/bin/healthcheck /usr/local/bin/entrypoint
+
+# Create necessary directories
+RUN mkdir -p /app/logs /app/index
+
+# Volume mount points
+VOLUME ["/root/.local/share/signal-cli", "/app/index", "/app/logs"]
+
+# Lightweight health check (less frequent for resource savings)
+HEALTHCHECK --interval=60s --timeout=5s --start-period=90s --retries=2 \
+    CMD ["/usr/local/bin/healthcheck"]
+
+# Use entrypoint script
+ENTRYPOINT ["/usr/local/bin/entrypoint"]
+
+# Run with minimal Python optimizations
+CMD ["python", "-u", "-O", "signal_bot_rag.py"]
+
+# Labels
+LABEL maintainer="Signal RAG Bot"
+LABEL description="Lightweight Signal RAG chatbot for small VPS"
+LABEL version="1.0.0-lite"

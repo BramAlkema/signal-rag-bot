@@ -1,0 +1,85 @@
+version: '3.8'
+
+# ===========================================
+# docker-compose.lite.yml
+# ===========================================
+# Optimized for small boxes (1GB RAM, 1 vCPU)
+# Memory usage: ~300-400MB
+# CPU usage: 0.5-1.0 core
+
+services:
+  signal-rag-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile.lite
+    image: signal-rag-bot:lite
+    container_name: signal-rag-bot
+    restart: unless-stopped
+
+    # Environment variables (optimized defaults for small boxes)
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - SIGNAL_PHONE_NUMBER=${SIGNAL_PHONE_NUMBER}
+      - ACTIVATION_PASSPHRASE=${ACTIVATION_PASSPHRASE:-Activate Oracle}
+      - AUTHORIZED_USERS=${AUTHORIZED_USERS:-}
+      - LOG_LEVEL=${LOG_LEVEL:-WARNING}  # Less verbose logging
+      - MAX_TOKENS=${MAX_TOKENS:-150}     # Reduced token limit
+      - CHUNK_SIZE=${CHUNK_SIZE:-800}     # Smaller chunks
+      - CHUNK_OVERLAP=${CHUNK_OVERLAP:-150}  # Less overlap
+      - SEARCH_K=${SEARCH_K:-2}           # Fewer search results
+      # Python optimizations
+      - PYTHONOPTIMIZE=1                  # Enable optimizations
+      - PYTHONUNBUFFERED=1                # Unbuffered output
+
+    # Volumes - same as standard
+    volumes:
+      - signal-data:/root/.local/share/signal-cli
+      - rag-index:/app/index
+      - ./logs:/app/logs
+
+    # Relaxed health check for resource savings
+    healthcheck:
+      test: ["/usr/local/bin/healthcheck"]
+      interval: 60s       # Check every 60s (vs 30s)
+      timeout: 5s         # Shorter timeout
+      start_period: 90s   # Longer grace period
+      retries: 2          # Fewer retries
+
+    # Minimal logging (less disk I/O)
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"    # Smaller log files
+        max-file: "2"     # Fewer backup files
+
+    # Resource limits for small boxes
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'       # Max 1 CPU core
+          memory: 512M      # Max 512MB RAM
+        reservations:
+          cpus: '0.25'      # Reserve 0.25 CPU
+          memory: 256M      # Reserve 256MB RAM
+
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+
+    # Memory swappiness (prefer RAM over swap)
+    mem_swappiness: 0
+
+# Named volumes
+volumes:
+  signal-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./signal-data
+  rag-index:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./index
