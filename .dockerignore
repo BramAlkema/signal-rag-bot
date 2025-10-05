@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.git/
+input/
+intermediate/
+optimized/
+*.pdf
+node_modules/
+.DS_Store

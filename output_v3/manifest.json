@@ -1,0 +1,43 @@
+{
+  "buckets": [
+    {
+      "file": "output_v3/bucket_ecosystems_innovation.md",
+      "category": "Ecosystems & Innovation",
+      "docs": 5,
+      "tokens": 181231
+    },
+    {
+      "file": "output_v3/bucket_defense_industry.md",
+      "category": "Defense Industry",
+      "docs": 4,
+      "tokens": 105023
+    },
+    {
+      "file": "output_v3/bucket_legal_procurement.md",
+      "category": "Legal & Procurement",
+      "docs": 4,
+      "tokens": 269420
+    },
+    {
+      "file": "output_v3/bucket_policy_strategy.md",
+      "category": "Policy & Strategy",
+      "docs": 3,
+      "tokens": 65807
+    },
+    {
+      "file": "output_v3/bucket_drones_unmanned_systems.md",
+      "category": "Drones & Unmanned Systems",
+      "docs": 3,
+      "tokens": 46668
+    }
+  ],
+  "total_docs": 19,
+  "total_tokens": 668149,
+  "categories": [
+    "Ecosystems & Innovation",
+    "Defense Industry",
+    "Legal & Procurement",
+    "Policy & Strategy",
+    "Drones & Unmanned Systems"
+  ]
+}
