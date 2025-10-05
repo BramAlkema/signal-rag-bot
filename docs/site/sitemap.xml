@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://github.com/BramAlkema/signal-rag-bot/</loc>
+         <lastmod>2025-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/BramAlkema/signal-rag-bot/api/custom-rag/</loc>
+         <lastmod>2025-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/BramAlkema/signal-rag-bot/deployment/docker/</loc>
+         <lastmod>2025-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/BramAlkema/signal-rag-bot/getting-started/quickstart/</loc>
+         <lastmod>2025-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/BramAlkema/signal-rag-bot/operations/monitoring/</loc>
+         <lastmod>2025-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://github.com/BramAlkema/signal-rag-bot/security/overview/</loc>
+         <lastmod>2025-10-05</lastmod>
+    </url>
+</urlset>

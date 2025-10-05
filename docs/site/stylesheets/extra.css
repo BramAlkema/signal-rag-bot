@@ -1,0 +1,126 @@
+/* Custom styles for Signal RAG Bot documentation */
+
+/* Enhance admonitions */
+.md-typeset .admonition {
+    border-radius: 0.2rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.05);
+}
+
+/* Code blocks styling */
+.md-typeset code {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 0.2rem;
+    padding: 0.1rem 0.3rem;
+}
+
+/* Table improvements */
+.md-typeset table:not([class]) {
+    border: 0.05rem solid var(--md-default-fg-color--lightest);
+    border-radius: 0.2rem;
+}
+
+.md-typeset table:not([class]) th {
+    background-color: rgba(0, 0, 0, 0.03);
+    font-weight: 600;
+}
+
+/* Grid cards for homepage */
+.grid.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.grid.cards > * {
+    padding: 1rem;
+    border: 0.05rem solid var(--md-default-fg-color--lightest);
+    border-radius: 0.2rem;
+    transition: box-shadow 0.2s;
+}
+
+.grid.cards > *:hover {
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+/* Improve mermaid diagram visibility */
+.mermaid {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+/* Enhance inline code in headings */
+h1 code, h2 code, h3 code, h4 code {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.2rem;
+}
+
+/* Better spacing for lists */
+.md-typeset ul, .md-typeset ol {
+    margin-bottom: 1rem;
+}
+
+/* Enhance kbd elements */
+.md-typeset kbd {
+    background-color: var(--md-code-bg-color);
+    border: 0.05rem solid var(--md-default-fg-color--lightest);
+    border-radius: 0.2rem;
+    box-shadow: 0 0.05rem 0 rgba(0, 0, 0, 0.2);
+    padding: 0.1rem 0.4rem;
+    font-family: var(--md-code-font-family);
+    font-size: 0.85em;
+}
+
+/* Highlight important notes */
+.md-typeset .admonition.tip {
+    border-color: #00c853;
+}
+
+.md-typeset .admonition.warning {
+    border-color: #ff6d00;
+}
+
+.md-typeset .admonition.danger {
+    border-color: #d32f2f;
+}
+
+/* Footer improvements */
+.md-footer-meta {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Better spacing for code examples */
+.md-typeset pre {
+    margin: 1rem 0;
+}
+
+/* Improve readability of inline links */
+.md-typeset a {
+    text-decoration: none;
+    border-bottom: 0.05rem solid transparent;
+    transition: border-color 0.2s;
+}
+
+.md-typeset a:hover {
+    border-bottom-color: var(--md-accent-fg-color);
+}
+
+/* Make checkboxes more visible */
+.md-typeset .task-list-item input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+/* Enhance command examples */
+.md-typeset .highlight pre code {
+    font-size: 0.85em;
+    line-height: 1.5;
+}
+
+/* Better visibility for tables on mobile */
+@media screen and (max-width: 76.1875em) {
+    .md-typeset table:not([class]) {
+        display: block;
+        overflow-x: auto;
+    }
+}
