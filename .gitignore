@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Environment variables
+.env
+
+# PDFs and data
+pdfs/
+*.pdf
+bucket_*.md
+extracted_mds/
+
+# Logs
+*.log
+bot.log
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Signal data
+signal-data/
+/tmp/
+
+# Misc
+*.swp
+*.swo
+*~
