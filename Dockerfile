@@ -1,7 +1,7 @@
 # ===========================================
 # Stage 1: Build Stage
 # ===========================================
-FROM python:3.11-slim AS builder
+FROM python:3.14-slim AS builder
 
 # Install build dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -31,7 +31,7 @@ RUN wget -q https://github.com/AsamK/signal-cli/releases/download/v0.13.9/signal
 # ===========================================
 # Stage 2: Runtime Stage
 # ===========================================
-FROM python:3.11-slim
+FROM python:3.14-slim
 
 # Install only runtime dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
